@@ -8,8 +8,6 @@ public class Constants {
 	public static final String CLIENT_SECRET = "client_secret";
 
 	public static final String SUBSCRIPTION_TYPE = "object";
-	
-	public static final String OBJECT_ID = "object_id";
 
 	public static final String VERIFY_TOKEN = "verify_token";
 
