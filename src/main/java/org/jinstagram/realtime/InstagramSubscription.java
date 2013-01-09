@@ -21,8 +21,6 @@ public class InstagramSubscription {
 	private String clientSecret;
 
 	private SubscriptionType subscriptionType;
-	
-	private String objectId;
 
 	private String verifyToken;
 
@@ -75,13 +73,6 @@ public class InstagramSubscription {
 
 		return this;
 	}
-	
-	public InstagramSubscription objectId(String objectId) {
-		
-		this.objectId = objectId;
-		
-		return this;
-	}
 
 	public InstagramSubscription verifyToken(String verifyToken) {
 		Preconditions.checkEmptyString(verifyToken, "Invalid 'verifyToken' key");
@@ -114,7 +105,6 @@ public class InstagramSubscription {
 		request.addBodyParameter(Constants.ASPECT, "media");
 		request.addBodyParameter(Constants.VERIFY_TOKEN, this.verifyToken);
 		request.addBodyParameter(Constants.CALLBACK_URL, callback);
-		request.addBodyParameter(Constants.OBJECT_ID, objectId);
 
 		Response response;
         try {

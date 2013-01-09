@@ -8,13 +8,13 @@ public class SubscriptionResponseObject {
 	private String changedAspect;
 
 	@SerializedName("subscription_id")
-	private String subscriptionId;
+	private long subscriptionId;
 
 	@SerializedName("object")
 	private String object;
 
 	@SerializedName("object_id")
-	private String objectId;
+	private long objectId;
 
 	@SerializedName("time")
 	private long epochTime;
@@ -36,14 +36,14 @@ public class SubscriptionResponseObject {
 	/**
 	 * @return the subscriptionId
 	 */
-	public String getSubscriptionId() {
+	public long getSubscriptionId() {
 		return subscriptionId;
 	}
 
 	/**
 	 * @param subscriptionId the subscriptionId to set
 	 */
-	public void setSubscriptionId(String subscriptionId) {
+	public void setSubscriptionId(long subscriptionId) {
 		this.subscriptionId = subscriptionId;
 	}
 
@@ -64,14 +64,14 @@ public class SubscriptionResponseObject {
 	/**
 	 * @return the objectId
 	 */
-	public String getObjectId() {
+	public long getObjectId() {
 		return objectId;
 	}
 
 	/**
 	 * @param objectId the objectId to set
 	 */
-	public void setObjectId(String objectId) {
+	public void setObjectId(long objectId) {
 		this.objectId = objectId;
 	}
 
