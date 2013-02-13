@@ -1,6 +1,6 @@
 package org.jinstagram.exceptions;
 
-public class InstagramRateLimitException extends InstagramException {
+public class InstagramRateLimitException extends InstagramServiceException {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -9,7 +9,7 @@ public class InstagramRateLimitException extends InstagramException {
 	 * @param message message explaining what went wrong
 	 */
 	public InstagramRateLimitException(String message) {
-		super(message, null);
+		super(message, 420);
 	}
 
 	/**
@@ -19,6 +19,6 @@ public class InstagramRateLimitException extends InstagramException {
 	 * @param e original exception
 	 */
 	public InstagramRateLimitException(String message, Exception e) {
-		super(message, e);
+		super(message, e, 420);
 	}
 }

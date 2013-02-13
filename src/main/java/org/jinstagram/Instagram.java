@@ -22,6 +22,7 @@ import org.jinstagram.entity.users.basicinfo.UserInfo;
 import org.jinstagram.entity.users.feed.MediaFeed;
 import org.jinstagram.entity.users.feed.UserFeed;
 import org.jinstagram.exceptions.InstagramException;
+import org.jinstagram.exceptions.InstagramServiceException;
 import org.jinstagram.http.Response;
 import org.jinstagram.http.Verbs;
 import org.jinstagram.model.Constants;
@@ -543,11 +544,11 @@ public class Instagram {
 		    try {
 		        error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
 		    } catch (JsonSyntaxException e) {
-		        throw new InstagramException("Failed to decode error response " + response.getBody(), e);
+		        throw new InstagramServiceException("Failed to decode error response " + response.getBody(), e, response.getCode());
 		    }
 		    error.throwException();
 		}
-        throw new InstagramException("Unknown error response code: " + response.getCode() + " " + response.getBody());
+        throw new InstagramServiceException("Unknown error response code: " + response.getCode() + " " + response.getBody(), response.getCode());
     }
 
 	/**

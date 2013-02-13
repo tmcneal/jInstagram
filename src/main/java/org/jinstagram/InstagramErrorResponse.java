@@ -5,6 +5,7 @@ import org.jinstagram.exceptions.InstagramException;
 import org.jinstagram.exceptions.InstagramRateLimitException;
 
 import com.google.gson.annotations.SerializedName;
+import org.jinstagram.exceptions.InstagramServiceException;
 
 public class InstagramErrorResponse {
 
@@ -25,6 +26,6 @@ public class InstagramErrorResponse {
             throw new InstagramRateLimitException(joinedMessage);
         }
 
-        throw new InstagramException(joinedMessage);
+        throw new InstagramServiceException(joinedMessage, code);
     }
 }
