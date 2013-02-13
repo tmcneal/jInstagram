@@ -5,8 +5,11 @@ import org.jinstagram.exceptions.InstagramException;
 import org.jinstagram.exceptions.InstagramRateLimitException;
 
 import com.google.gson.annotations.SerializedName;
+import org.jinstagram.exceptions.InstagramServiceException;
 
 public class InstagramErrorResponse {
+    public static final int INSTAGRAM_BAD_REQUEST = 400;
+    public static final int INSTAGRAM_RATE_LIMIT = 420;
 
     private int code;
 
@@ -19,12 +22,12 @@ public class InstagramErrorResponse {
     public void throwException() throws InstagramException {
         String joinedMessage = errorType + ": " + errorMessage;
         switch (code) {
-        case 400:
+        case INSTAGRAM_BAD_REQUEST:
             throw new InstagramBadRequestException(joinedMessage);
-        case 420:
+        case INSTAGRAM_RATE_LIMIT:
             throw new InstagramRateLimitException(joinedMessage);
         }
 
-        throw new InstagramException(joinedMessage);
+        throw new InstagramServiceException(joinedMessage, code);
     }
 }

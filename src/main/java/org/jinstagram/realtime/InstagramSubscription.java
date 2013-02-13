@@ -142,14 +142,11 @@ public class InstagramSubscription {
 		request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
 		request.addQuerystringParameter("object", "all");
 
-		Response response;
         try {
-            response = request.send();
+            request.send();
         } catch (IOException e) {
             throw new InstagramException("Failed to delete all subscriptions", e);
         }
-		System.out.println(response.getBody());
-
 	}
 
 	public void getSubscriptionList() throws InstagramException {
@@ -159,13 +156,11 @@ public class InstagramSubscription {
 		request.addQuerystringParameter(Constants.CLIENT_ID, this.clientId);
 		request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
 
-		Response response;
         try {
-            response = request.send();
+            request.send();
         } catch (IOException e) {
             throw new InstagramException("Failed to get subscription list", e);
         }
-		System.out.println(response.getBody());
 	}
 
     @Override

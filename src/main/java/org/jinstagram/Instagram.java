@@ -22,6 +22,7 @@ import org.jinstagram.entity.users.basicinfo.UserInfo;
 import org.jinstagram.entity.users.feed.MediaFeed;
 import org.jinstagram.entity.users.feed.UserFeed;
 import org.jinstagram.exceptions.InstagramException;
+import org.jinstagram.exceptions.InstagramServiceException;
 import org.jinstagram.http.Response;
 import org.jinstagram.http.Verbs;
 import org.jinstagram.model.Constants;
@@ -451,13 +452,33 @@ public class Instagram {
 	/**
 	 * Get a list of recent media objects from a given location.
 	 *
-	 * @param mediaId a id of the Media.
+	 * @param locationId id of the location
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
 	public MediaFeed getRecentMediaByLocation(long locationId) throws InstagramException {
+		return getRecentMediaByLocation(locationId, null, null);
+	}
+
+	/**
+	 * Get a list of recent media objects from a given location.
+	 *
+	 * @param locationId id of the location
+	 * @param minTimestamp Media returned will be after this UNIX timestamp
+	 * @param maxTimestamp Media returned will be before this UNIX timestamp
+	 * @return a MediaFeed object.
+	 * @throws InstagramException if any error occurs.
+	 */
+	public MediaFeed getRecentMediaByLocation(long locationId, Long minTimestamp, Long maxTimestamp) throws InstagramException {
+		Map<String, String> params = new HashMap<String, String>();
+		if (minTimestamp != null) {
+			params.put(QueryParam.MIN_TIMESTAMP, minTimestamp.toString());
+		}
+		if (maxTimestamp != null) {
+			params.put(QueryParam.MAX_TIMESTAMP, maxTimestamp.toString());
+		}
 		String apiMethod = String.format(Methods.LOCATIONS_RECENT_MEDIA_BY_ID, locationId);
-		MediaFeed feed = createInstagramObject(Verbs.GET, MediaFeed.class, apiMethod, null);
+		MediaFeed feed = createInstagramObject(Verbs.GET, MediaFeed.class, apiMethod, params);
 
 		return feed;
 	}
@@ -543,11 +564,11 @@ public class Instagram {
 		    try {
 		        error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
 		    } catch (JsonSyntaxException e) {
-		        throw new InstagramException("Failed to decode error response " + response.getBody(), e);
+		        throw new InstagramServiceException("Failed to decode error response " + response.getBody(), e, response.getCode());
 		    }
 		    error.throwException();
 		}
-        throw new InstagramException("Unknown error response code: " + response.getCode() + " " + response.getBody());
+        throw new InstagramServiceException("Unknown error response code: " + response.getCode() + " " + response.getBody(), response.getCode());
     }
 
 	/**

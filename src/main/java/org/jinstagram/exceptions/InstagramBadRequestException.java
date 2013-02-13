@@ -1,6 +1,8 @@
 package org.jinstagram.exceptions;
 
-public class InstagramBadRequestException extends InstagramException {
+import org.jinstagram.InstagramErrorResponse;
+
+public class InstagramBadRequestException extends InstagramServiceException {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -9,7 +11,7 @@ public class InstagramBadRequestException extends InstagramException {
 	 * @param message message explaining what went wrong
 	 */
 	public InstagramBadRequestException(String message) {
-		super(message, null);
+		super(message, null, InstagramErrorResponse.INSTAGRAM_BAD_REQUEST);
 	}
 
 	/**
@@ -19,6 +21,6 @@ public class InstagramBadRequestException extends InstagramException {
 	 * @param e original exception
 	 */
 	public InstagramBadRequestException(String message, Exception e) {
-		super(message, e);
+		super(message, e, InstagramErrorResponse.INSTAGRAM_BAD_REQUEST);
 	}
 }
