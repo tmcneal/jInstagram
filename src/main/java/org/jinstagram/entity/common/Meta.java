@@ -11,56 +11,56 @@ import com.google.gson.annotations.SerializedName;
  * @version 1.0
  */
 public class Meta {
-	@SerializedName("code")
-	private int code;
+    @SerializedName("code")
+    private int code;
 
-	@SerializedName("error_message")
-	private String errorMessage;
+    @SerializedName("error_message")
+    private String errorMessage;
 
-	@SerializedName("error_type")
-	private String errorType;
+    @SerializedName("error_type")
+    private String errorType;
 
-	/**
-	 * @return the code
-	 */
-	public int getCode() {
-		return code;
-	}
+    /**
+     * @return the code
+     */
+    public int getCode() {
+        return code;
+    }
 
-	/**
-	 * @param code the code to set
-	 */
-	public void setCode(int code) {
-		this.code = code;
-	}
+    /**
+     * @param code the code to set
+     */
+    public void setCode(int code) {
+        this.code = code;
+    }
 
-	/**
-	 * @return the errorType
-	 */
-	public String getErrorType() {
-		return errorType;
-	}
+    /**
+     * @return the errorType
+     */
+    public String getErrorType() {
+        return errorType;
+    }
 
-	/**
-	 * @param errorType the errorType to set
-	 */
-	public void setErrorType(String errorType) {
-		this.errorType = errorType;
-	}
+    /**
+     * @param errorType the errorType to set
+     */
+    public void setErrorType(String errorType) {
+        this.errorType = errorType;
+    }
 
-	/**
-	 * @return the errorMessage
-	 */
-	public String getErrorMessage() {
-		return errorMessage;
-	}
+    /**
+     * @return the errorMessage
+     */
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 
-	/**
-	 * @param errorMessage the errorMessage to set
-	 */
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
+    /**
+     * @param errorMessage the errorMessage to set
+     */
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
     @Override
     public String toString() {

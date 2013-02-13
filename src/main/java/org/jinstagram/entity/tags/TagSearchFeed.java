@@ -7,33 +7,33 @@ import org.jinstagram.entity.common.Meta;
 import java.util.List;
 
 public class TagSearchFeed {
-	@SerializedName("meta")
-	private Meta meta;
+    @SerializedName("meta")
+    private Meta meta;
 
-	@SerializedName("data")
-	private List<TagInfoData> tagList;
+    @SerializedName("data")
+    private List<TagInfoData> tagList;
 
-	/**
-	 * @return the meta
-	 */
-	public Meta getMeta() {
-		return meta;
-	}
+    /**
+     * @return the meta
+     */
+    public Meta getMeta() {
+        return meta;
+    }
 
-	/**
-	 * @param meta the meta to set
-	 */
-	public void setMeta(Meta meta) {
-		this.meta = meta;
-	}
+    /**
+     * @param meta the meta to set
+     */
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
 
-	public List<TagInfoData> getTagList() {
-		return tagList;
-	}
+    public List<TagInfoData> getTagList() {
+        return tagList;
+    }
 
-	public void setTagList(List<TagInfoData> tagList) {
-		this.tagList = tagList;
-	}
+    public void setTagList(List<TagInfoData> tagList) {
+        this.tagList = tagList;
+    }
 
     @Override
     public String toString() {

@@ -1,34 +1,34 @@
 package org.jinstagram.realtime;
 
 public enum SubscriptionType {
-	/**
+    /**
      * A enum to denote the 'user' subscription type.
      */
-	USERS("user"),
+    USERS("user"),
 
-	/**
+    /**
      * A enum to denote the 'tag' subscription type.
-	 */
-	TAGS("tag"),
+     */
+    TAGS("tag"),
 
-	/**
+    /**
      * A enum to denote the 'location' subscription type.
      */
-	LOCATIONS("location"),
+    LOCATIONS("location"),
 
-	/**
+    /**
      * A enum to denote the 'geography' subscription type.
      */
-	GEOGRAPHIES("geography");
+    GEOGRAPHIES("geography");
 
-	private String subType;
+    private String subType;
 
-	private SubscriptionType(String subType) {
-		this.subType = subType;
-	}
+    private SubscriptionType(String subType) {
+        this.subType = subType;
+    }
 
-	@Override
-	public String toString() {
-		return subType;
-	}
+    @Override
+    public String toString() {
+        return subType;
+    }
 }

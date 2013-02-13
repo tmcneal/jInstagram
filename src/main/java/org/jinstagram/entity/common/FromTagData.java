@@ -3,61 +3,61 @@ package org.jinstagram.entity.common;
 import com.google.gson.annotations.SerializedName;
 
 public class FromTagData {
-	@SerializedName("full_name")
-	private String fullName;
+    @SerializedName("full_name")
+    private String fullName;
 
-	@SerializedName("id")
-	private long id;
+    @SerializedName("id")
+    private long id;
 
-	@SerializedName("profile_picture")
-	private String profilePicture;
+    @SerializedName("profile_picture")
+    private String profilePicture;
 
-	@SerializedName("username")
-	private String username;
+    @SerializedName("username")
+    private String username;
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return the profilePicture
-	 */
-	public String getProfilePicture() {
-		return profilePicture;
-	}
+    /**
+     * @return the profilePicture
+     */
+    public String getProfilePicture() {
+        return profilePicture;
+    }
 
-	/**
-	 * @param profilePicture the profilePicture to set
-	 */
-	public void setProfilePicture(String profilePicture) {
-		this.profilePicture = profilePicture;
-	}
+    /**
+     * @param profilePicture the profilePicture to set
+     */
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 
-	/**
-	 * @return the fullName
-	 */
-	public String getFullName() {
-		return fullName;
-	}
+    /**
+     * @return the fullName
+     */
+    public String getFullName() {
+        return fullName;
+    }
 
-	/**
-	 * @param fullName the fullName to set
-	 */
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    /**
+     * @param fullName the fullName to set
+     */
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
     @Override
     public String toString() {

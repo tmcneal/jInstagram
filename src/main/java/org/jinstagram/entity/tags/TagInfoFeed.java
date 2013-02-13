@@ -5,33 +5,33 @@ import com.google.gson.annotations.SerializedName;
 import org.jinstagram.entity.common.Meta;
 
 public class TagInfoFeed {
-	@SerializedName("meta")
-	private Meta meta;
+    @SerializedName("meta")
+    private Meta meta;
 
-	@SerializedName("data")
-	private TagInfoData tagInfo;
+    @SerializedName("data")
+    private TagInfoData tagInfo;
 
-	/**
-	 * @return the meta
-	 */
-	public Meta getMeta() {
-		return meta;
-	}
+    /**
+     * @return the meta
+     */
+    public Meta getMeta() {
+        return meta;
+    }
 
-	/**
-	 * @param meta the meta to set
-	 */
-	public void setMeta(Meta meta) {
-		this.meta = meta;
-	}
+    /**
+     * @param meta the meta to set
+     */
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
 
-	public TagInfoData getTagInfo() {
-		return tagInfo;
-	}
+    public TagInfoData getTagInfo() {
+        return tagInfo;
+    }
 
-	public void setTagInfo(TagInfoData tagInfo) {
-		this.tagInfo = tagInfo;
-	}
+    public void setTagInfo(TagInfoData tagInfo) {
+        this.tagInfo = tagInfo;
+    }
 
     @Override
     public String toString() {

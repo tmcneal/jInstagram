@@ -6,16 +6,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class LocationInfo {
 
-	@SerializedName("data")
-	private Location locationData;
+    @SerializedName("data")
+    private Location locationData;
 
-	public Location getLocationData() {
-		return locationData;
-	}
+    public Location getLocationData() {
+        return locationData;
+    }
 
-	public void setLocationData(Location locationData) {
-		this.locationData = locationData;
-	}
+    public void setLocationData(Location locationData) {
+        this.locationData = locationData;
+    }
 
     @Override
     public String toString() {

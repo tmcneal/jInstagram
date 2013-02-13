@@ -12,208 +12,208 @@ import org.jinstagram.entity.common.User;
 import java.util.List;
 
 public class MediaFeedData {
-	@SerializedName("caption")
-	private Caption caption;
+    @SerializedName("caption")
+    private Caption caption;
 
-	@SerializedName("comments")
-	private Comments comments;
+    @SerializedName("comments")
+    private Comments comments;
 
-	@SerializedName("created_time")
-	private String createdTime;
+    @SerializedName("created_time")
+    private String createdTime;
 
-	@SerializedName("id")
-	private String id;
+    @SerializedName("id")
+    private String id;
 
-	@SerializedName("filter")
-	private String imageFilter;
+    @SerializedName("filter")
+    private String imageFilter;
 
-	@SerializedName("images")
-	private Images images;
+    @SerializedName("images")
+    private Images images;
 
-	@SerializedName("likes")
-	private Likes likes;
+    @SerializedName("likes")
+    private Likes likes;
 
-	@SerializedName("link")
-	private String link;
+    @SerializedName("link")
+    private String link;
 
-	@SerializedName("location")
-	private Location location;
+    @SerializedName("location")
+    private Location location;
 
-	@SerializedName("tags")
-	private List<String> tags;
+    @SerializedName("tags")
+    private List<String> tags;
 
-	@SerializedName("type")
-	private String type;
+    @SerializedName("type")
+    private String type;
 
-	@SerializedName("user")
-	private User user;
+    @SerializedName("user")
+    private User user;
 
-	@SerializedName("user_has_liked")
-	private boolean userHasLiked;
+    @SerializedName("user_has_liked")
+    private boolean userHasLiked;
 
-	/**
-	 * @return the location
-	 */
-	public Location getLocation() {
-		return location;
-	}
+    /**
+     * @return the location
+     */
+    public Location getLocation() {
+        return location;
+    }
 
-	/**
-	 * @param location the location to set
-	 */
-	public void setLocation(Location location) {
-		this.location = location;
-	}
+    /**
+     * @param location the location to set
+     */
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
-	/**
-	 * @return the comments
-	 */
-	public Comments getComments() {
-		return comments;
-	}
+    /**
+     * @return the comments
+     */
+    public Comments getComments() {
+        return comments;
+    }
 
-	/**
-	 * @param comments the comments to set
-	 */
-	public void setComments(Comments comments) {
-		this.comments = comments;
-	}
+    /**
+     * @param comments the comments to set
+     */
+    public void setComments(Comments comments) {
+        this.comments = comments;
+    }
 
-	/**
-	 * @return the caption
-	 */
-	public Caption getCaption() {
-		return caption;
-	}
+    /**
+     * @return the caption
+     */
+    public Caption getCaption() {
+        return caption;
+    }
 
-	/**
-	 * @param caption the caption to set
-	 */
-	public void setCaption(Caption caption) {
-		this.caption = caption;
-	}
+    /**
+     * @param caption the caption to set
+     */
+    public void setCaption(Caption caption) {
+        this.caption = caption;
+    }
 
-	/**
-	 * @return the link
-	 */
-	public String getLink() {
-		return link;
-	}
+    /**
+     * @return the link
+     */
+    public String getLink() {
+        return link;
+    }
 
-	/**
-	 * @param link the link to set
-	 */
-	public void setLink(String link) {
-		this.link = link;
-	}
+    /**
+     * @param link the link to set
+     */
+    public void setLink(String link) {
+        this.link = link;
+    }
 
-	/**
-	 * @return the likes
-	 */
-	public Likes getLikes() {
-		return likes;
-	}
+    /**
+     * @return the likes
+     */
+    public Likes getLikes() {
+        return likes;
+    }
 
-	/**
-	 * @param likes the likes to set
-	 */
-	public void setLikes(Likes likes) {
-		this.likes = likes;
-	}
+    /**
+     * @param likes the likes to set
+     */
+    public void setLikes(Likes likes) {
+        this.likes = likes;
+    }
 
-	/**
-	 * @return the createdTime
-	 */
-	public String getCreatedTime() {
-		return createdTime;
-	}
+    /**
+     * @return the createdTime
+     */
+    public String getCreatedTime() {
+        return createdTime;
+    }
 
-	/**
-	 * @param createdTime the createdTime to set
-	 */
-	public void setCreatedTime(String createdTime) {
-		this.createdTime = createdTime;
-	}
+    /**
+     * @param createdTime the createdTime to set
+     */
+    public void setCreatedTime(String createdTime) {
+        this.createdTime = createdTime;
+    }
 
-	/**
-	 * @return the images
-	 */
-	public Images getImages() {
-		return images;
-	}
+    /**
+     * @return the images
+     */
+    public Images getImages() {
+        return images;
+    }
 
-	/**
-	 * @param images the images to set
-	 */
-	public void setImages(Images images) {
-		this.images = images;
-	}
+    /**
+     * @param images the images to set
+     */
+    public void setImages(Images images) {
+        this.images = images;
+    }
 
-	/**
-	 * @return the imageFilter
-	 */
-	public String getImageFilter() {
-		return imageFilter;
-	}
+    /**
+     * @return the imageFilter
+     */
+    public String getImageFilter() {
+        return imageFilter;
+    }
 
-	/**
-	 * @param imageFilter the imageFilter to set
-	 */
-	public void setImageFilter(String imageFilter) {
-		this.imageFilter = imageFilter;
-	}
+    /**
+     * @param imageFilter the imageFilter to set
+     */
+    public void setImageFilter(String imageFilter) {
+        this.imageFilter = imageFilter;
+    }
 
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return the user
-	 */
-	public User getUser() {
-		return user;
-	}
+    /**
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
 
-	/**
-	 * @param user the user to set
-	 */
-	public void setUser(User user) {
-		this.user = user;
-	}
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public boolean isUserHasLiked() {
-		return userHasLiked;
-	}
+    public boolean isUserHasLiked() {
+        return userHasLiked;
+    }
 
-	public void setUserHasLiked(boolean userHasLiked) {
-		this.userHasLiked = userHasLiked;
-	}
+    public void setUserHasLiked(boolean userHasLiked) {
+        this.userHasLiked = userHasLiked;
+    }
 
-	public List<String> getTags() {
-		return tags;
-	}
+    public List<String> getTags() {
+        return tags;
+    }
 
-	public void setTags(List<String> tags) {
-		this.tags = tags;
-	}
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
     @Override
     public String toString() {

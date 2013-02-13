@@ -8,23 +8,23 @@ import com.google.gson.annotations.SerializedName;
 
 public class LocationSearchFeed {
 
-	@SerializedName("data")
-	private List<Location> locationList;
+    @SerializedName("data")
+    private List<Location> locationList;
 
-	/**
-	 * @return the locationList
-	 */
-	public List<Location> getLocationList() {
-		return locationList;
-	}
+    /**
+     * @return the locationList
+     */
+    public List<Location> getLocationList() {
+        return locationList;
+    }
 
-	/**
-	 * @param locationList
-	 *            the locationList to set
-	 */
-	public void setLocationList(List<Location> locationList) {
-		this.locationList = locationList;
-	}
+    /**
+     * @param locationList
+     *            the locationList to set
+     */
+    public void setLocationList(List<Location> locationList) {
+        this.locationList = locationList;
+    }
 
     @Override
     public String toString() {

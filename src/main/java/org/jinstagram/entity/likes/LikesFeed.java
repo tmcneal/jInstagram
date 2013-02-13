@@ -9,41 +9,41 @@ import com.google.gson.annotations.SerializedName;
 
 public class LikesFeed {
 
-	@SerializedName("meta")
-	private Meta meta;
+    @SerializedName("meta")
+    private Meta meta;
 
-	@SerializedName("data")
-	private List<User> userList;
+    @SerializedName("data")
+    private List<User> userList;
 
-	/**
-	 * @return the meta
-	 */
-	public Meta getMeta() {
-		return meta;
-	}
+    /**
+     * @return the meta
+     */
+    public Meta getMeta() {
+        return meta;
+    }
 
-	/**
-	 * @param meta
-	 *            the meta to set
-	 */
-	public void setMeta(Meta meta) {
-		this.meta = meta;
-	}
+    /**
+     * @param meta
+     *            the meta to set
+     */
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
 
-	/**
-	 * @return the userList
-	 */
-	public List<User> getUserList() {
-		return userList;
-	}
+    /**
+     * @return the userList
+     */
+    public List<User> getUserList() {
+        return userList;
+    }
 
-	/**
-	 * @param userList
-	 *            the userList to set
-	 */
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
-	}
+    /**
+     * @param userList
+     *            the userList to set
+     */
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
 
     @Override
     public String toString() {

@@ -14,49 +14,49 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InstagramApi {
-	public String getAccessTokenEndpoint() {
-		return Constants.ACCESS_TOKEN_ENDPOINT;
-	}
+    public String getAccessTokenEndpoint() {
+        return Constants.ACCESS_TOKEN_ENDPOINT;
+    }
 
-	public Verbs getAccessTokenVerb() {
-		return Verbs.POST;
-	}
+    public Verbs getAccessTokenVerb() {
+        return Verbs.POST;
+    }
 
-	public String getAuthorizationUrl(OAuthConfig config) {
-		Preconditions.checkValidUrl(config.getCallback(),
-				"Must provide a valid url as callback. Instagram does not support OOB");
+    public String getAuthorizationUrl(OAuthConfig config) {
+        Preconditions.checkValidUrl(config.getCallback(),
+                "Must provide a valid url as callback. Instagram does not support OOB");
 
-		// Append scope if present
-		if (config.hasScope()) {
-			return String.format(Constants.SCOPED_AUTHORIZE_URL, config.getApiKey(),
-					formURLEncode(config.getCallback()), formURLEncode(config.getScope()));
-		}
-		else {
-			return String.format(Constants.AUTHORIZE_URL, config.getApiKey(), formURLEncode(config.getCallback()));
-		}
-	}
+        // Append scope if present
+        if (config.hasScope()) {
+            return String.format(Constants.SCOPED_AUTHORIZE_URL, config.getApiKey(),
+                    formURLEncode(config.getCallback()), formURLEncode(config.getScope()));
+        }
+        else {
+            return String.format(Constants.AUTHORIZE_URL, config.getApiKey(), formURLEncode(config.getCallback()));
+        }
+    }
 
-	public AccessTokenExtractor getAccessTokenExtractor() {
-		return new AccessTokenExtractor() {
-			private Pattern accessTokenPattern = Pattern.compile(Constants.ACCESS_TOKEN_EXTRACTOR_REGEX);
+    public AccessTokenExtractor getAccessTokenExtractor() {
+        return new AccessTokenExtractor() {
+            private Pattern accessTokenPattern = Pattern.compile(Constants.ACCESS_TOKEN_EXTRACTOR_REGEX);
 
-			@Override
-			public Token extract(String response) {
-				Preconditions.checkEmptyString(response, "Cannot extract a token from a null or empty String");
+            @Override
+            public Token extract(String response) {
+                Preconditions.checkEmptyString(response, "Cannot extract a token from a null or empty String");
 
-				Matcher matcher = accessTokenPattern.matcher(response);
+                Matcher matcher = accessTokenPattern.matcher(response);
 
-				if (matcher.find()) {
-					return new Token(matcher.group(1), "", response);
-				}
-				else {
-					throw new OAuthException("Cannot extract an acces token. Response was: " + response);
-				}
-			}
-		};
-	}
+                if (matcher.find()) {
+                    return new Token(matcher.group(1), "", response);
+                }
+                else {
+                    throw new OAuthException("Cannot extract an acces token. Response was: " + response);
+                }
+            }
+        };
+    }
 
-	public InstagramService createService(OAuthConfig config) {
-		return new InstagramService(this, config);
-	}
+    public InstagramService createService(OAuthConfig config) {
+        return new InstagramService(this, config);
+    }
 }
