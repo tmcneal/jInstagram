@@ -1,6 +1,7 @@
 package org.jinstagram;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 
 import org.apache.commons.lang3.StringUtils;
@@ -562,7 +563,12 @@ public class Instagram {
             Gson gson = new Gson();
             final InstagramErrorResponse error;
             try {
-                error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
+                JsonElement json = gson.fromJson(response.getBody(), JsonElement.class);
+                if (json != null && json.isJsonObject() && json.getAsJsonObject().has("meta")) {
+                    error = gson.fromJson(json.getAsJsonObject().get("meta"), InstagramErrorResponse.class);
+                } else {
+                    error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
+                }
             } catch (JsonSyntaxException e) {
                 throw new InstagramServiceException("Failed to decode error response " + response.getBody(), e, response.getCode());
             }
