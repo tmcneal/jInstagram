@@ -458,7 +458,7 @@ public class Instagram {
      * @throws InstagramException if any error occurs.
      */
     public MediaFeed getRecentMediaByLocation(long locationId) throws InstagramException {
-        return getRecentMediaByLocation(locationId, null, null);
+        return getRecentMediaByLocation(locationId, null, null, null);
     }
 
     /**
@@ -471,12 +471,29 @@ public class Instagram {
      * @throws InstagramException if any error occurs.
      */
     public MediaFeed getRecentMediaByLocation(long locationId, Long minTimestamp, Long maxTimestamp) throws InstagramException {
+        return getRecentMediaByLocation(locationId, null, minTimestamp, maxTimestamp);
+    }
+
+    /**
+     * Get a list of recent media objects from a given location.
+     *
+     * @param locationId id of the location
+     * @param minTimestamp Media returned will be after this UNIX timestamp
+     * @param maxTimestamp Media returned will be before this UNIX timestamp
+     * @param count Media count to be returned in request
+     * @return a MediaFeed object.
+     * @throws InstagramException if any error occurs.
+     */
+    public MediaFeed getRecentMediaByLocation(long locationId, Integer count, Long minTimestamp, Long maxTimestamp) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
         if (minTimestamp != null) {
             params.put(QueryParam.MIN_TIMESTAMP, minTimestamp.toString());
         }
         if (maxTimestamp != null) {
             params.put(QueryParam.MAX_TIMESTAMP, maxTimestamp.toString());
+        }
+        if (maxTimestamp != null) {
+            params.put(QueryParam.COUNT, count.toString());
         }
         String apiMethod = String.format(Methods.LOCATIONS_RECENT_MEDIA_BY_ID, locationId);
         MediaFeed feed = createInstagramObject(Verbs.GET, MediaFeed.class, apiMethod, params);
