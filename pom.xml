@@ -11,13 +11,13 @@
   <scm>
     <connection>scm:git:git@github.com/NessComputing/jInstagram.git</connection>
     <developerConnection>scm:git:git@github.com:NessComputing/jInstagram.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>jInstagram-1.3.2</tag>
   </scm>
 
   <groupId>com.nesscomputing.instagram</groupId>
   <artifactId>jInstagram</artifactId>
   <name>jInstagram</name>
-  <version>1.3.2-SNAPSHOT</version>
+  <version>1.3.2</version>
   <packaging>jar</packaging>
   <description>Java Instagram API, originally by sachin-handiekar</description>
 
