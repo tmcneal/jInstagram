@@ -416,6 +416,15 @@ public class Instagram {
 		return feed;
 	}
 
+    /**
+   	 * Get the next page of recent tag media objects from a previously executed request
+   	 * @param pagination
+   	 * @throws InstagramException
+   	 */
+    public TagMediaFeed getRecentMediaTagsNextPage(Pagination pagination) throws InstagramException {
+        return createInstagramObject(Verbs.GET, TagMediaFeed.class, StringUtils.removeStart(pagination.getNextUrl(), Constants.API_URL), null);
+    }
+
 	/**
 	 * Search for tags by name - results are ordered first as an exact match,
 	 * then by popularity.
