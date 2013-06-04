@@ -31,6 +31,8 @@ import org.jinstagram.model.Relationship;
 import org.jinstagram.utils.Preconditions;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -396,7 +398,7 @@ public class Instagram {
 	 * @throws InstagramException if any error occurs.
 	 */
 	public TagInfoFeed getTagInfo(String tagName) throws InstagramException {
-		String apiMethod = String.format(Methods.TAGS_BY_NAME, tagName);
+		String apiMethod = String.format(Methods.TAGS_BY_NAME, tagToURLEncoded(tagName));
 		TagInfoFeed feed = createInstagramObject(Verbs.GET, TagInfoFeed.class, apiMethod, null);
 
 		return feed;
@@ -410,7 +412,7 @@ public class Instagram {
 	 * @throws InstagramException if any error occurs.
 	 */
 	public TagMediaFeed getRecentMediaTags(String tagName) throws InstagramException {
-		String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
+		String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagToURLEncoded(tagName));
 		TagMediaFeed feed = createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, null);
 
 		return feed;
@@ -436,7 +438,7 @@ public class Instagram {
 	public TagSearchFeed searchTags(String tagName) throws InstagramException {
 		Map<String, String> params = new HashMap<String, String>();
 
-		params.put(QueryParam.SEARCH_QUERY, tagName);
+		params.put(QueryParam.SEARCH_QUERY, tagToURLEncoded(tagName));
 
 		TagSearchFeed feed = createInstagramObject(Verbs.GET, TagSearchFeed.class, Methods.TAGS_SEARCH, params);
 
@@ -636,4 +638,20 @@ public class Instagram {
 
 		return object;
 	}
+
+  /**
+   * The instagram endpoint requires properly encoded urls. This function
+   * encodes the tag for the query.
+   * 
+   * @param tag
+   *          The tag to be encoded
+   * @return A string representing the tag encoded for a url.
+   */
+  private String tagToURLEncoded(String tag) {
+    try {
+      return (new URI(tag)).toASCIIString();
+    } catch (URISyntaxException e) {
+      return tag;
+    }
+  }
 }
