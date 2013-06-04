@@ -2,22 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.nesscomputing</groupId>
-    <artifactId>ness-oss-parent</artifactId>
-    <version>25</version>
-  </parent>
-
   <scm>
     <connection>scm:git:git@github.com/NessComputing/jInstagram.git</connection>
     <developerConnection>scm:git:git@github.com:NessComputing/jInstagram.git</developerConnection>
-    <tag>HEAD</tag>
   </scm>
 
   <groupId>com.nesscomputing.instagram</groupId>
   <artifactId>jInstagram</artifactId>
   <name>jInstagram</name>
-  <version>1.3.4-SNAPSHOT</version>
+  <version>1.3.4</version>
   <packaging>jar</packaging>
   <description>Java Instagram API, originally by sachin-handiekar</description>
 

@@ -279,7 +279,7 @@ public class Instagram {
      * @return a mediaFeed object.
      * @throws InstagramException if any error occurs.
      */
-    public MediaInfoFeed getMediaInfo(long mediaId) throws InstagramException {
+    public MediaInfoFeed getMediaInfo(String mediaId) throws InstagramException {
         Preconditions.checkNotNull(mediaId, "mediaId cannot be null.");
 
         String apiMethod = String.format(Methods.MEDIA_BY_ID, mediaId);
@@ -326,7 +326,7 @@ public class Instagram {
      * @return a MediaCommentsFeed object.
      * @throws InstagramException if any error occurs.
      */
-    public MediaCommentsFeed getMediaComments(long mediaId) throws InstagramException {
+    public MediaCommentsFeed getMediaComments(String mediaId) throws InstagramException {
         String apiMethod = String.format(Methods.MEDIA_COMMENTS, mediaId);
         MediaCommentsFeed feed = createInstagramObject(Verbs.GET, MediaCommentsFeed.class, apiMethod, null);
 
@@ -342,7 +342,7 @@ public class Instagram {
      * @return a MediaCommentResponse feed.
      * @throws InstagramException if any error occurs.
      */
-    public MediaCommentResponse setMediaComments(long mediaId, String text) throws InstagramException {
+    public MediaCommentResponse setMediaComments(String mediaId, String text) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
 
         params.put(QueryParam.TEXT, text);
@@ -362,7 +362,7 @@ public class Instagram {
      * @return a MediaCommentResponse feed.
      * @throws InstagramException if any error occurs.
      */
-    public MediaCommentResponse deleteMediaCommentById(long mediaId, long commentId) throws InstagramException {
+    public MediaCommentResponse deleteMediaCommentById(String mediaId, long commentId) throws InstagramException {
         String apiMethod = String.format(Methods.DELETE_MEDIA_COMMENTS, mediaId, commentId);
         MediaCommentResponse feed = createInstagramObject(Verbs.DELETE, MediaCommentResponse.class, apiMethod, null);
 
@@ -376,7 +376,7 @@ public class Instagram {
      * @return a LikesFeed object.
      * @throws InstagramException if any error occurs.
      */
-    public LikesFeed getUserLikes(long mediaId) throws InstagramException {
+    public LikesFeed getUserLikes(String mediaId) throws InstagramException {
         String apiMethod = String.format(Methods.LIKES_BY_MEDIA_ID, mediaId);
         LikesFeed feed = createInstagramObject(Verbs.GET, LikesFeed.class, apiMethod, null);
 
@@ -390,7 +390,7 @@ public class Instagram {
      * @return a LikesFeed object.
      * @throws InstagramException if any error occurs.
      */
-    public LikesFeed setUserLike(long mediaId) throws InstagramException {
+    public LikesFeed setUserLike(String mediaId) throws InstagramException {
         String apiMethod = String.format(Methods.LIKES_BY_MEDIA_ID, mediaId);
         LikesFeed feed = createInstagramObject(Verbs.POST, LikesFeed.class, apiMethod, null);
 
@@ -404,7 +404,7 @@ public class Instagram {
      * @return a LikesFeed object.
      * @throws InstagramException if any error occurs.
      */
-    public LikesFeed deleteUserLike(long mediaId) throws InstagramException {
+    public LikesFeed deleteUserLike(String mediaId) throws InstagramException {
         String apiMethod = String.format(Methods.LIKES_BY_MEDIA_ID, mediaId);
         LikesFeed feed = createInstagramObject(Verbs.DELETE, LikesFeed.class, apiMethod, null);
 
@@ -437,6 +437,15 @@ public class Instagram {
         TagMediaFeed feed = createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, null);
 
         return feed;
+    }
+
+    /**
+        * Get the next page of recent tag media objects from a previously executed request
+        * @param pagination
+        * @throws InstagramException
+        */
+    public TagMediaFeed getRecentMediaTagsNextPage(Pagination pagination) throws InstagramException {
+        return createInstagramObject(Verbs.GET, TagMediaFeed.class, StringUtils.removeStart(pagination.getNextUrl(), Constants.API_URL), null);
     }
 
     /**
@@ -474,7 +483,7 @@ public class Instagram {
     /**
      * Get a list of recent media objects from a given location.
      *
-     * @param locationId id of the location
+     * @param mediaId a id of the Media.
      * @return a MediaFeed object.
      * @throws InstagramException if any error occurs.
      */
@@ -601,18 +610,13 @@ public class Instagram {
             Gson gson = new Gson();
             final InstagramErrorResponse error;
             try {
-                JsonElement json = gson.fromJson(response.getBody(), JsonElement.class);
-                if (json != null && json.isJsonObject() && json.getAsJsonObject().has("meta")) {
-                    error = gson.fromJson(json.getAsJsonObject().get("meta"), InstagramErrorResponse.class);
-                } else {
-                    error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
-                }
+                error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
             } catch (JsonSyntaxException e) {
-                throw new InstagramServiceException("Failed to decode error response " + response.getBody(), e, response.getCode());
+                throw new InstagramException("Failed to decode error response " + response.getBody(), e);
             }
             error.throwException();
         }
-        throw new InstagramServiceException("Unknown error response code: " + response.getCode() + " " + response.getBody(), response.getCode());
+        throw new InstagramException("Unknown error response code: " + response.getCode() + " " + response.getBody());
     }
 
     /**
@@ -641,14 +645,14 @@ public class Instagram {
         }
 
         // Add the AccessToken to the Request Url
-        if ((verb == Verbs.GET) || (verb == Verbs.DELETE)) {
+        if ((verb == Verbs.GET) || (verb == Verbs.DELETE) || (verb == Verbs.POST)) { // At least one POST operation requires the access token in the query string
             if (accessToken == null) {
                 request.addQuerystringParameter(OAuthConstants.CLIENT_ID, clientId);
             } else {
                 request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
             }
         }
-        else {
+        if ((verb == Verbs.POST) || (verb == Verbs.PUT)) {
             if (accessToken == null) {
                 request.addBodyParameter(OAuthConstants.CLIENT_ID, clientId);
             } else {

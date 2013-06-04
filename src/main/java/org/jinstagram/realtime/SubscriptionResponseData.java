@@ -29,7 +29,7 @@ public class SubscriptionResponseData {
     private String object;
 
     @SerializedName("objectId")
-    private long objectId;
+    private String objectId;
 
     @SerializedName("aspect")
     private String aspect;
@@ -41,7 +41,7 @@ public class SubscriptionResponseData {
     private String type;
 
     @SerializedName("id")
-    private long id;
+    private String id;
 
     /**
      * @return the object
@@ -60,14 +60,14 @@ public class SubscriptionResponseData {
     /**
      * @return the objectId
      */
-    public long getObjectId() {
+    public String getObjectId() {
         return objectId;
     }
 
     /**
      * @param objectId the objectId to set
      */
-    public void setObjectId(long objectId) {
+    public void setObjectId(String objectId) {
         this.objectId = objectId;
     }
 
@@ -116,14 +116,14 @@ public class SubscriptionResponseData {
     /**
      * @return the id
      */
-    public long getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

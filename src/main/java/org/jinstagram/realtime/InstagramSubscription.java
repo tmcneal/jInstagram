@@ -42,6 +42,8 @@ public class InstagramSubscription {
     private String clientSecret;
 
     private SubscriptionType subscriptionType;
+    
+    private String objectId;
 
     private String verifyToken;
 
@@ -94,6 +96,13 @@ public class InstagramSubscription {
 
         return this;
     }
+    
+    public InstagramSubscription objectId(String objectId) {
+        
+        this.objectId = objectId;
+        
+        return this;
+    }
 
     public InstagramSubscription verifyToken(String verifyToken) {
         Preconditions.checkEmptyString(verifyToken, "Invalid 'verifyToken' key");
@@ -126,6 +135,7 @@ public class InstagramSubscription {
         request.addBodyParameter(Constants.ASPECT, "media");
         request.addBodyParameter(Constants.VERIFY_TOKEN, this.verifyToken);
         request.addBodyParameter(Constants.CALLBACK_URL, callback);
+        request.addBodyParameter(Constants.OBJECT_ID, objectId);
 
         Response response;
         try {
@@ -154,7 +164,7 @@ public class InstagramSubscription {
 
 
 
-    public void deleteAllSubscription() throws InstagramException {
+    public SubscriptionResponse deleteAllSubscription() throws InstagramException {
 
         OAuthRequest request = new OAuthRequest(Verbs.DELETE, Constants.SUBSCRIPTION_ENDPOINT);
 
@@ -163,11 +173,34 @@ public class InstagramSubscription {
         request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
         request.addQuerystringParameter("object", "all");
 
+        Response response;
         try {
-            request.send();
+            response = request.send();
+            SubscriptionResponse subscriptionResponse = getSubscriptionResponse(response.getBody());
+            return subscriptionResponse;
         } catch (IOException e) {
             throw new InstagramException("Failed to delete all subscriptions", e);
         }
+    }
+    
+    public SubscriptionResponse deleteSubscription(String subscriptionId) throws InstagramException {
+
+        OAuthRequest request = new OAuthRequest(Verbs.DELETE, Constants.SUBSCRIPTION_ENDPOINT);
+
+        // Add the oauth parameter in the body
+        request.addQuerystringParameter(Constants.CLIENT_ID, this.clientId);
+        request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
+        request.addQuerystringParameter("id", subscriptionId);
+
+        Response response;
+        try {
+            response = request.send();
+        } catch (IOException e) {
+            throw new InstagramException("Failed to delete subscription ID: " + subscriptionId, e);
+        }
+
+        SubscriptionResponse subscriptionResponse = getSubscriptionResponse(response.getBody());
+        return subscriptionResponse;
     }
 
     public void getSubscriptionList() throws InstagramException {
@@ -177,8 +210,10 @@ public class InstagramSubscription {
         request.addQuerystringParameter(Constants.CLIENT_ID, this.clientId);
         request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
 
+        Response response;
         try {
-            request.send();
+            response = request.send();
+            System.out.println(response.getBody());
         } catch (IOException e) {
             throw new InstagramException("Failed to get subscription list", e);
         }
