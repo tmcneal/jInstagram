@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.codec.net.URLCodec;
+import org.apache.commons.codec.EncoderException;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
 import org.jinstagram.auth.model.Token;
@@ -31,8 +33,6 @@ import org.jinstagram.model.Relationship;
 import org.jinstagram.utils.Preconditions;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -649,8 +649,8 @@ public class Instagram {
    */
   private String tagToURLEncoded(String tag) {
     try {
-      return (new URI(tag)).toASCIIString();
-    } catch (URISyntaxException e) {
+      return (new URLCodec()).encode(tag);
+    } catch (EncoderException e) {
       return tag;
     }
   }
